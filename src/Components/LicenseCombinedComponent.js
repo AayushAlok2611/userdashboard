@@ -2,20 +2,18 @@ import React, { Component } from 'react'
 import VideoComponent from './VideoComponent'
 import ImageComponent from './ImageComponent'
 import WebcamComponent from './WebcamComponent'
-import Image from './ImageUpload'
+import MultipleImageComponent from './MultipleImageComponent'
 
 
- class CombinedComponent extends Component {
+ class LicenseCombinedComponent extends Component {
     render() {
         return (
             <div className="row-appear">
-                <Image/>
+                <MultipleImageComponent/>
                 <VideoComponent/>
-
-
             </div>
         )
     }
 }
 
-export default CombinedComponent
+export default LicenseCombinedComponent

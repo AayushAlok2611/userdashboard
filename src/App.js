@@ -3,11 +3,12 @@ import './App.css';
 import UplaodForm from './FileUpload';
 import ImageComponent from './Components/ImageComponent';
 import Navigator from './Components/NavigationBar';
-import  {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import WebcamComponent from './Components/WebcamComponent';
 import VideoComponent from './Components/VideoComponent';
-import CombinedComponent from './Components/CombinedComponent';
-import Image from './Components/ImageUpload';
+import FaceCombinedComponent from './Components/FaceCombinedComponent';
+import MultipleImageComponent from './Components/MultipleImageComponent';
+import LicenseCombinedComponent from './Components/LicenseCombinedComponent';
 
 
 
@@ -23,8 +24,9 @@ function App() {
       <Route path='/' exact component={UplaodForm}></Route>
       <Route path='/webcamupload' exact component={WebcamComponent}></Route>
       <Route path='/videoupload' exact component={VideoComponent}></Route>
-      <Route path="/combined" exact component={CombinedComponent}></Route>
-      <Route path="/img" exact component={Image}></Route>
+      <Route path="/facerecog" exact component={FaceCombinedComponent}></Route>
+      <Route path="/licenseplaterecog" exact component={LicenseCombinedComponent}></Route>
+      <Route path="/img" exact component={MultipleImageComponent}></Route>
 
       </Switch>
       </Router>
