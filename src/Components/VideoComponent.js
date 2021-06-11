@@ -57,7 +57,7 @@ class VideoComponent extends Component {
         <div className="App"> 
             
             <div>
-            <   h1>Video</h1>
+              <p style={{fontWeight:'bolder'}}> Video</p>
                 <input type="file"  name="image-upload" id="input2" onChange={this.onFileChange} />
                 <div className="label1">
                   <label className="image-upload" htmlFor="input2">

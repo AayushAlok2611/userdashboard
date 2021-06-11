@@ -28,7 +28,7 @@ const MultipleImageComponent = () => {
 	return (
 		<div className="app">
 			<div>
-                <h1>Image</h1>
+                <p style={{fontWeight:'bolder'}}>Image</p>
 				<input type="file" id="file" multiple onChange={handleImageChange} />
 				<div className="label1">
 					<label htmlFor="file" className="image-upload">

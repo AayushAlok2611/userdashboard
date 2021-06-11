@@ -134,6 +134,7 @@ tr:nth-child(even) {
 #input5[type="file"] {
 	display: none;
 }
+
 .label1{
 	width: 100%;
 	height: 50px;
@@ -145,6 +146,7 @@ tr:nth-child(even) {
 .label2{
 	width: 100%;
 	height: 50px;
+  font-weight: bolder;
   display: grid;
   place-items: center;
   
@@ -185,7 +187,7 @@ tr:nth-child(even) {
 
 .row-appear{
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
 }
 

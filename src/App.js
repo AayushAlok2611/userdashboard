@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import UplaodForm from './FileUpload';
+import UploadForm from './Components/FileUpload';
 import ImageComponent from './Components/ImageComponent';
 import Navigator from './Components/NavigationBar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -21,7 +21,7 @@ function App() {
       <Navigator />
       <Switch>
       <Route path='/imgupload' exact component={ImageComponent}></Route>
-      <Route path='/' exact component={UplaodForm}></Route>
+      <Route path='/' exact component={UploadForm}></Route>
       <Route path='/webcamupload' exact component={WebcamComponent}></Route>
       <Route path='/videoupload' exact component={VideoComponent}></Route>
       <Route path="/facerecog" exact component={FaceCombinedComponent}></Route>
