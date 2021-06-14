@@ -10,8 +10,27 @@ import Button from '@material-ui/core/Button';
 
  function FaceCombinedComponent () {
      const [username,setUsername]  = useState('');
-     const [age,setAge] = useState(null);
+     const [age,setAge] = useState('');
      const [gender,setGender] = useState('');
+
+    const usernameChange = e => {
+        setUsername(e.target.value);
+        console.log('username' , username);
+    }
+
+    const ageChange = e => {
+        setAge(e.target.value);
+        console.log('Age' , age);
+    }
+
+    const genderChange = e => {
+        setGender(e.target.value);
+        console.log('gender' , gender);
+    }
+
+    const submitHandler = e => {
+        e.preventDefault();
+    }
         return (
             <div>
             <br /> <br />
@@ -19,30 +38,32 @@ import Button from '@material-ui/core/Button';
             <br /> <br />
             <MuiThemeProvider>
             <React.Fragment>
-            <TextField
-              id="username" 
-              label="User Name"
-              value = {username}
-              onChange ={e => setUsername(e.target.value)}
-            />
-            <br /><br />
-            <TextField
-              id="age" 
-              label="Age"
-              value = {age}
-              onChange ={e => setAge(e.target.value)}
-            />
-            <br /><br />
-            <TextField
-              id="gender" 
-              label="Gender"
-              value = {gender}
-              onChange ={e => setGender(e.target.value)}
-            />
+                <TextField
+                id="username" 
+                label="User Name"
+                value = {username}
+                onChange ={usernameChange}
+                />
+                <br /><br />
+                <TextField
+                id="age" 
+                label="Age"
+                defaultValue = {age}
+                onChange ={ageChange}
+                />
+                <br /><br />
+                <TextField
+                id="gender" 
+                label="Gender"
+                defaultValue = {gender}
+                onChange ={genderChange}
+                />
+                <br/>
+                <button onClick={submitHandler}>Submit</button>
             <br /><br /><br /><br /><br />
             <div className="col-appear">
                 <MultipleImageComponent/>
-                <VideoComponent/>
+                {/* <VideoComponent/> */}
             </div>
             </React.Fragment>
             </MuiThemeProvider>

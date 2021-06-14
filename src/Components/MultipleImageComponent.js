@@ -19,7 +19,7 @@ const MultipleImageComponent = () => {
 	};
 
 	const renderPhotos = (source) => {
-		console.log('source: ', source);
+		// console.log('source: ', source);
 		return source.map((photo) => {
 			return <img src={photo} alt="" key={photo} />;
 		});
