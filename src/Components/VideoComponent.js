@@ -71,7 +71,7 @@ class VideoComponent extends Component {
                     </label>
                 </div>
                 <br />
-                <VideoPreview 
+                {/* <VideoPreview 
                     src={this.state.selectedFile}
                     size={150000}
                     preview={true}
@@ -80,7 +80,7 @@ class VideoComponent extends Component {
                     controls={true}
                     autoPlay={true}
                     id="file1"
-                />
+                /> */}
             </div>
         </div>
       );
