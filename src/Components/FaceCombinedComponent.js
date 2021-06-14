@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import VideoComponent from './VideoComponent'
-import ImageComponent from './ImageComponent'
-import WebcamComponent from './WebcamComponent'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MultipleImageComponent from './MultipleImageComponent'
 import '../App.css';
@@ -10,8 +8,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
 
- class FaceCombinedComponent extends Component {
-    render() {
+ function FaceCombinedComponent () {
+     const [username,setUsername]  = useState('');
+     const [age,setAge] = useState(null);
+     const [gender,setGender] = useState('');
         return (
             <div>
             <br /> <br />
@@ -22,16 +22,22 @@ import Button from '@material-ui/core/Button';
             <TextField
               id="username" 
               label="User Name"
+              value = {username}
+              onChange ={e => setUsername(e.target.value)}
             />
             <br /><br />
             <TextField
               id="age" 
               label="Age"
+              value = {age}
+              onChange ={e => setAge(e.target.value)}
             />
             <br /><br />
             <TextField
               id="gender" 
               label="Gender"
+              value = {gender}
+              onChange ={e => setGender(e.target.value)}
             />
             <br /><br /><br /><br /><br />
             <div className="col-appear">
@@ -42,7 +48,6 @@ import Button from '@material-ui/core/Button';
             </MuiThemeProvider>
             </div>
         )
-    }
 }
 
 export default FaceCombinedComponent
