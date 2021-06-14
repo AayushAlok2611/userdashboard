@@ -63,7 +63,7 @@ import Button from '@material-ui/core/Button';
             <br /><br /><br /><br /><br />
             <div className="col-appear">
                 <MultipleImageComponent/>
-                {/* <VideoComponent/> */}
+                <VideoComponent/>
             </div>
             </React.Fragment>
             </MuiThemeProvider>
