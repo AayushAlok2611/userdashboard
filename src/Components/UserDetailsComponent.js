@@ -1,46 +1,67 @@
 import React, { Component ,useState} from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MultipleImageComponent from './MultipleImageComponent'
 import '../App.css';
+import TextField from '@material-ui/core/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 function UserDetailsComponent() {
   const [orgName,setOrgName] = useState('');
-  const [regNo,setRegNo] = useState(null);
+  const [regNo,setRegNo] = useState(0);
   const [address,setAddress] = useState('');
   const [adminName,setAdminName] = useState('');
-  const [eID,setEID] = useState(null);
+  const [eID,setEID] = useState(0);
+
   const submitHandler = (e) => {
     e.preventDefault();
 }
   return (
-    <div className="UploadForm">
-       <br /><br />   
-      <h1>Welcome to the Surveillance System</h1>
-      <br /> <br />
-      <form onSubmit = {submitHandler}>
-        <div>
-          <label className="label2" htmlFor="OrganisationName">Name of Organisation</label>
-          <input type ="text" id = "OrganisationName" value={orgName} onChange={(e)=>setOrgName(e.target.value)}/>
-        </div>
-        <div >
-          <label className="label2" htmlFor="RegistrationNumber">Registration Number</label>
-          <input type ="text" id = "RegistrationNumber" value={regNo} onChange={(e)=>setRegNo(e.target.value)}/>
-        </div>
-        <div>
-          <label className="label2" htmlFor="Address">Address</label>
-          <textarea id="Address" style={{height:50,width:'20rem'}} value={address} onChange={(e)=>setAddress(e.target.value)}></textarea>
-        </div>
-        <div>
-          <label className="label2" htmlFor="AdminName">Administrator name</label>
-          <input type ="text" id = "AdminName" value={adminName} onChange={(e)=>setAdminName(e.target.value)}/>
-        </div>
-        <div>
-          <label className="label2" htmlFor="EmployeeID">Employee ID</label>
-          <input type ="text" id = "EmployeeID" value={eID} onChange={(e)=>setEID(e.target.value)}/>
-        </div>
-        <button>Submit</button>
-      </form>
-      {/* <FormBatch /> */}
+    <div className="UplaodForm">
+        <br /><br />   
+        <h1>Welcome to the Surveillance System</h1>
+        <br /> <br />
+        <MuiThemeProvider>
+            <React.Fragment>
+            <TextField
+              id="OrganisationName" 
+              label="Name of Organisation"
+              value = {orgName}
+              onChange ={e=>{setOrgName(e.target.value)}}
+            />
+            <br /> <br />
+            <TextField
+              id="RegistrationNumber" 
+              label="Registration Number"
+              defaultValue = {regNo}
+              onChange ={e=>setRegNo(e.target.value)}
+            />
+            <br /><br />
+            <TextField
+              id="Address" 
+              label="Address"
+              value = {address}
+              onChange ={e=>setAddress(e.target.value)}
+            />
+            <br /><br />
+            <TextField
+              id="AdminName" 
+              label="Administrator name"
+              value = {adminName}
+              onChange ={e=>setAdminName(e.target.value)}
+            />
+           <br /><br />
+            <TextField
+              id="EmployeeID" 
+              label="Employee ID"
+              value = {eID}
+              onChange ={e=>setEID(e.target.value)}
+            />
+            <br /><br />
+            <RaisedButton>Submit</RaisedButton>
+            </React.Fragment>
+            </MuiThemeProvider>
     </div>
-  );
+  )
 }
 
 export default UserDetailsComponent;

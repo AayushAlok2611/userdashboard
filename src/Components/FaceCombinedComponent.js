@@ -5,12 +5,11 @@ import MultipleImageComponent from './MultipleImageComponent'
 import '../App.css';
 import TextField from '@material-ui/core/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import Button from '@material-ui/core/Button';
+
 
  function FaceCombinedComponent () {
      const [username,setUsername]  = useState('');
-     const [age,setAge] = useState('');
+     const [age,setAge] = useState(0);
      const [gender,setGender] = useState('');
 
     const usernameChange = e => {
@@ -41,7 +40,7 @@ import Button from '@material-ui/core/Button';
                 <TextField
                 id="username" 
                 label="User Name"
-                value = {username}
+                defaultValue = {username}
                 onChange ={usernameChange}
                 />
                 <br /><br />
@@ -58,8 +57,8 @@ import Button from '@material-ui/core/Button';
                 defaultValue = {gender}
                 onChange ={genderChange}
                 />
-                <br/>
-                <button onClick={submitHandler}>Submit</button>
+                <br/> <br/>
+                <RaisedButton onClick={submitHandler}>Submit</RaisedButton>
             <br /><br /><br /><br /><br />
             <div className="col-appear">
                 <MultipleImageComponent/>
