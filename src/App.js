@@ -20,13 +20,12 @@ function App() {
       <Router>
       <Navigator />
       <Switch>
-      <Route path='/imgupload' exact component={ImageComponent}></Route>
       <Route path='/' exact component={UserDetailsComponent}></Route>
       <Route path='/webcamupload' exact component={WebcamComponent}></Route>
       <Route path='/videoupload' exact component={VideoComponent}></Route>
       <Route path="/facerecog" exact component={FaceCombinedComponent}></Route>
       <Route path="/licenseplaterecog" exact component={LicenseCombinedComponent}></Route>
-      <Route path="/img" exact component={MultipleImageComponent}></Route>
+      <Route path="/imgupload" exact component={MultipleImageComponent}></Route>
 
       </Switch>
       </Router>
