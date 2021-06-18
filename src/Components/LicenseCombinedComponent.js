@@ -8,21 +8,24 @@ import TextField from '@material-ui/core/TextField';
 function MultipleImageComponent (props) {
 
 	const handleImageChange = (e) => {
-		// console.log(e.target.files[])
+		// console.log(e.target.files)
 		if (e.target.files) {
 			const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
-
+            
 			// console.log("filesArray: ", filesArray);
 
-			props.setSelectedImages((prevImages) => prevImages.concat(filesArray));
+			props.selectedImagesChange(filesArray);
 			Array.from(e.target.files).map(
 				(file) => URL.revokeObjectURL(file) // avoid memory leak
 			);
+            // console.log('props.selectedImages',props.selectedImages);
 		}
 	};
 
 	const renderPhotos = (source) => {
 		// console.log('source: ', source);
+        // console.log('props.selectedImages render',props.selectedImages);
+
 		return source.map((photo) => {
 			return <img src={photo} alt="" key={photo} />;
 		});
@@ -31,7 +34,7 @@ function MultipleImageComponent (props) {
 	return (
 		<div className="app">
 			<div>
-                <p style={{fontWeight:'bolder'}}>Image</p>
+        <p style={{fontWeight:'bolder'}}>Image</p>
 				<input type="file" id="file" multiple onChange={handleImageChange} />
 				<div className="label1">
 					<label htmlFor="file" className="image-upload">
@@ -44,69 +47,23 @@ function MultipleImageComponent (props) {
 	);
 }
 
-
-function VideoComponent (props) {
-     
-     // On file select (from the pop up)
-     const onFileChange = event => {
-       // Update the state
-       props.setSelectedVideo(event.target.files[0]);
-       console.log(event.target.files[0]);
-     };
-     
-     // On file upload (click the upload button)
-     const onFileUpload = () => {
-     
-       // Create an object of formData
-    //    const formData = new FormData();
-     
-    //    // Update the formData object
-    //    formData.append(
-    //      "myFile",
-    //      this.state.selectedFile,
-    //      this.state.selectedFile.name
-    //    );
-     
-    //    // Details of the uploaded file
-    //    console.log(this.state.selectedFile);
-     
-    //    // Request made to the backend api
-    //    // Send formData object
-    //    axios.post("api/uploadfile", formData);
-     };
-     // File content to be displayed after
-     // file upload is complete
-       return (
-         <div className="App"> 
-             
-             <div>
-               <p style={{fontWeight:'bolder'}}> Video</p>
-                 <input type="file"  name="image-upload" id="input2" onChange={onFileChange} />
-                 <div className="label1">
-                   <label className="image-upload" htmlFor="input2">
-                       Add Video
-                   </label>
-                 </div>
-                 <button id="input1" onClick={onFileUpload}/>
-                 <div className="label2">
-                     <label className="image-upload" htmlFor="input1">
-                         Upload Video
-                     </label>
-                 </div>
-                 <br />
-             </div>
-         </div>
-       );
-   }
-
-
-
  function LicenseCombinedComponent () {
      const [vID,setVID] = useState(0);
      const [vNo,setVNo] = useState(0);
      const [assignee,setAssignee] = useState('');
      const [selectedVideo,setSelectedVideo] = useState('');
      const [selectedImages,setSelectedImages] = useState([]);
+
+     const selectedImagesChange = (filesArray) => {
+      // console.log(typeof(filesArray));
+      // if( typeof(filesArray)!==typeof([]) )
+      // console.log('type inequaltiy');
+      setSelectedImages( prevSelectedImages => prevSelectedImages.concat(filesArray) );
+      }
+
+      const selectedVideoChange = (video) => {
+          setSelectedVideo(video);
+      }
 
      const submitHandler = (e) => {
          e.preventDefault();
@@ -138,15 +95,42 @@ function VideoComponent (props) {
                 />
                 <br /><br /><br /><br />
                 <div className="col-appear">
-                <MultipleImageComponent selectedImages={selectedImages} setSelectedImages={setSelectedImages}/>
-                <VideoComponent selectedVideo={selectedVideo} setSelectedVideo={setSelectedVideo}/>
-                </div>
+                <MultipleImageComponent selectedImages={selectedImages} selectedImagesChange={selectedImagesChange}/>
+                <VideoComponent selectedVideo={selectedVideo} selectedVideoChange={selectedVideoChange}/>
+            </div>
                 <br/> <br/>
                 <RaisedButton>Submit</RaisedButton>
                 </React.Fragment>
                 </MuiThemeProvider>
             </div>
         )
+}
+
+function VideoComponent (props) {
+     
+  // On file select (from the pop up)
+  const onFileChange = event => {
+    // Update the state
+    props.selectedVideoChange(event.target.files[0]);
+  };
+  
+  // File content to be displayed after
+  // file upload is complete
+    return (
+      <div className="App"> 
+          
+          <div>
+            <p style={{fontWeight:'bolder'}}> Video</p>
+              <input type="file"  name="image-upload" id="input2" onChange={onFileChange} />
+              <div className="label1">
+                <label className="image-upload" htmlFor="input2">
+                    Add Video
+                </label>
+              </div>
+              <br />
+          </div>
+      </div>
+    );
 }
 
 export default LicenseCombinedComponent

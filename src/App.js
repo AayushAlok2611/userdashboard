@@ -9,11 +9,6 @@ import VideoComponent from './Components/VideoComponent';
 import FaceCombinedComponent from './Components/FaceCombinedComponent';
 import MultipleImageComponent from './Components/MultipleImageComponent';
 import LicenseCombinedComponent from './Components/LicenseCombinedComponent';
-
-
-
-
-
 function App() {
   return (
     <div className="App">
@@ -26,7 +21,6 @@ function App() {
       <Route path="/facerecog" exact component={FaceCombinedComponent}></Route>
       <Route path="/licenseplaterecog" exact component={LicenseCombinedComponent}></Route>
       <Route path="/imgupload" exact component={MultipleImageComponent}></Route>
-
       </Switch>
       </Router>
     </div>
