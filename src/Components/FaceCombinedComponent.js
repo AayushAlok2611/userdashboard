@@ -24,9 +24,6 @@ function MultipleImageComponent (props) {
 	};
 
 	const renderPhotos = (source) => {
-		// console.log('source: ', source);
-        // console.log('props.selectedImages render',props.selectedImages);
-
 		return source.map((photo) => {
 			return <img src={photo} alt="" key={photo} />;
 		});
@@ -71,9 +68,6 @@ function MultipleImageComponent (props) {
     }
 
     const selectedImagesChange = (filesArray) => {
-        // console.log(typeof(filesArray));
-        // if( typeof(filesArray)!==typeof([]) )
-        // console.log('type inequaltiy');
         setSelectedImages( prevSelectedImages => prevSelectedImages.concat(filesArray) );
     }
 
