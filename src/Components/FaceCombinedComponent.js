@@ -75,6 +75,11 @@ function MultipleImageComponent (props) {
         setSelectedVideo(video);
     }
 
+    useEffect(()=>{
+        console.log(selectedImages);
+        console.log(selectedVideo);
+    },[selectedImages,selectedVideo])
+
     const submitHandler = e => {
         e.preventDefault();
         Axios({
