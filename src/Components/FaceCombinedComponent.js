@@ -7,27 +7,26 @@ import {Axios} from "./Axios";
 
 
 function MultipleImageComponent (props) {
-
+    
 	const handleImageChange = (e) => {
 		// console.log(e.target.files)
 		if (e.target.files) {
-			const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
-            
+			// const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+            // 
 			// console.log("filesArray: ", filesArray);
 
-			props.selectedImagesChange(filesArray);
-			Array.from(e.target.files).map(
-				(file) => URL.revokeObjectURL(file) // avoid memory leak
-			);
-            // console.log('props.selectedImages',props.selectedImages);
+			props.selectedImagesChange(e.target.files);
+			// Array.from(e.target.files).map(
+			// 	(file) => URL.revokeObjectURL(file) // avoid memory leak
+			// );
 		}
 	};
 
-	const renderPhotos = (source) => {
-		return source.map((photo) => {
-			return <img src={photo} alt="" key={photo} />;
-		});
-	};
+	// const renderPhotos = (source) => {
+	// 	return source.map((photo) => {
+	// 		return <img src={photo} alt="" key={photo} />;
+	// 	});
+	// };
 
 	return (
 		<div className="app">
@@ -39,7 +38,8 @@ function MultipleImageComponent (props) {
 						Add Image
 					</label>
 				</div>
-				<div className="result">{renderPhotos(props.selectedImages)}</div>
+                <div className="result"></div>
+				{/* <div className="result">{renderPhotos(props.selectedImages)}</div> */}
 			</div>
 		</div>
 	);
@@ -49,8 +49,8 @@ function MultipleImageComponent (props) {
      const [username,setUsername]  = useState('');
      const [age,setAge] = useState(0);
      const [gender,setGender] = useState('');
-     const [selectedVideo,setSelectedVideo] = useState({});
-     const [selectedImages,setSelectedImages] = useState([]);
+     const [selectedVideo,setSelectedVideo] = useState();
+     const [selectedImages,setSelectedImages] = useState();
 
     const usernameChange = e => {
         setUsername(e.target.value);
@@ -68,7 +68,8 @@ function MultipleImageComponent (props) {
     }
 
     const selectedImagesChange = (filesArray) => {
-        setSelectedImages( prevSelectedImages => prevSelectedImages.concat(filesArray) );
+        setSelectedImages(filesArray);
+        // setSelectedImages( prevImages => prevImages.concat(filesArray) );
     }
 
     const selectedVideoChange = (video) => {
@@ -76,18 +77,31 @@ function MultipleImageComponent (props) {
     }
 
     useEffect(()=>{
-        console.log(selectedImages);
-        console.log(selectedVideo);
+        console.log('selectedImages',selectedImages);
+        console.log('selectedVideo',selectedVideo);
     },[selectedImages,selectedVideo])
 
     const submitHandler = e => {
+
         e.preventDefault();
+        console.log('Submission started');
+        const data = new FormData();
+        data.append("images",selectedImages);
+        data.append("video",selectedVideo);
+        data.append("name",username);
+        data.append("age",age);
+        data.append("gender",gender);
         Axios({
             method: 'POST',
             url: '/api/faces',
-            data: { userId: 'kunal', lisenceCode: 'abcde' },
+            data: data
+            ,
+             headers:{
+                 Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYjhmOTAzMmEwODA5NDcyZWNjZmZlNSIsImlhdCI6MTYyNDI4NTUzOSwiZXhwIjoxNjI2ODc3NTM5fQ.Ed7vKhgECnx-6WStNdrc-G8PuYFSUXHHMWA-NTQY_L4"
+             }
           }).then((resp) => {
-              console.log(resp)
+              console.log('response returned successfully');
+              console.log('returned response' , resp)
 
           }).catch(err => {
               console.log(err);
